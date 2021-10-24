@@ -1,0 +1,31 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: cards
+  profiles:
+    active: production
+  datasource:
+    url: ${cards.datasource.url}
+    username: ${cards.datasource.username}
+    password: ${cards.datasource.password}
+    driverClassName: ${cards.datasource.driverClassName}
+  jpa:
+    database: ${cards.jpa.database}
+    show-sql: ${cards.jpa.show-sql}
+    properties:
+      hibernate:
+        dialect: ${cards.jpa.properties.hibernate.dialect}
+        ddl-auto: create-drop
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+eureka:
+  client: ${eureka-client}
+application:
+  allow-get-cards: ${cards.allow-get-cards}
+feign:
+  hystrix:
+    enabled: true
